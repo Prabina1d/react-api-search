@@ -109,7 +109,7 @@ function App() {
               on the Home page.
             </p>
 
-            <h2>Technology Used</h2>
+            <h2>Recent Technology Used</h2>
 
             <ul>
               <li>React</li>
