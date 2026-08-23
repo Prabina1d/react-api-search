@@ -26,7 +26,6 @@ function MapView({ users }) {
   const mapInstance = useRef(null);
   const vectorSource = useRef(null);
 
-  // Create map
   useEffect(() => {
     vectorSource.current = new VectorSource();
 
@@ -46,7 +45,10 @@ function MapView({ users }) {
       ],
 
       view: new View({
-        center: fromLonLat([85.324, 27.7172]),
+        center: fromLonLat([
+          85.324,
+          27.7172,
+        ]),
         zoom: 2,
       }),
     });
@@ -58,23 +60,35 @@ function MapView({ users }) {
     };
   }, []);
 
-  // Add user markers
   useEffect(() => {
-    if (!vectorSource.current) return;
+    if (!vectorSource.current) {
+      return;
+    }
 
     vectorSource.current.clear();
 
     users.forEach((user) => {
-      const latitude = Number(user.address?.geo?.lat);
-      const longitude = Number(user.address?.geo?.lng);
+      const latitude = Number(
+        user.address?.geo?.lat
+      );
 
-      if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+      const longitude = Number(
+        user.address?.geo?.lng
+      );
+
+      if (
+        !Number.isFinite(latitude) ||
+        !Number.isFinite(longitude)
+      ) {
         return;
       }
 
       const marker = new Feature({
         geometry: new Point(
-          fromLonLat([longitude, latitude])
+          fromLonLat([
+            longitude,
+            latitude,
+          ])
         ),
         user,
       });
@@ -96,11 +110,18 @@ function MapView({ users }) {
         })
       );
 
-      vectorSource.current.addFeature(marker);
+      vectorSource.current.addFeature(
+        marker
+      );
     });
   }, [users]);
 
-  return <div ref={mapRef} className="map" />;
+  return (
+    <div
+      ref={mapRef}
+      className="map"
+    />
+  );
 }
 
 export default MapView;
