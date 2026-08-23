@@ -43,25 +43,29 @@
   height: 500px;
 }
 
-.map {
-  width: 100%;
-  height: 100vh;
-}
-
 .navbar {
   display: flex;
-  gap: 30px;
+  flex-direction: row;
   align-items: center;
+  gap: 30px;
+  padding: 15px 30px;
+  background-color: #ffffff;
 }
 
 .navbar a {
+  display: inline-block;
   color: #2563eb;
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .navbar a:hover {
   color: #1d4ed8;
 }
 
+.map {
+  width: 100%;
+  height: 500px;
+}
